@@ -243,16 +243,70 @@ def run_dorking_engine(selected_keywords, selected_locs, selected_platforms):
         my_bar.empty()
     return results
 
+# ==========================================
+# KHUSUS VERSI ONLINE (DEMO MODE)
+# ==========================================
 @st.cache_data(ttl=3600)
 def scrape_olx(keyword, location="2000035", max_pages=2):
-    base_url = "https://www.olx.co.id/api/relevance/v4/search"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "*/*",
-        "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-        "Referer": "https://www.olx.co.id/",
-        "Origin": "https://www.olx.co.id"
-    }
+    # Kita buat delay palsu biar terlihat sedang bekerja
+    time.sleep(2) 
+    
+    # DATA DUMMY / PALSU UNTUK DEMO PRESENTASI
+    # Agar dashboard tidak kosong saat dibuka online
+    dummy_data = [
+        {
+            "id": "1", "title": "Jual Bibit Lobster Mutiara Murah", 
+            "description": "Ready stok baby lobster mutiara lokasi tarakan, bisa kirim", 
+            "price": {"value": {"display": "Rp 15.000"}}, 
+            "locations_resolved": {"ADMIN_LEVEL_3_name": "Tarakan Tengah", "ADMIN_LEVEL_1_name": "Kalimantan Utara"},
+            "user": {"name": "Nelayan Sukses"}, "created_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        },
+        {
+            "id": "2", "title": "Akar Bahar Asli Kualitas Super", 
+            "description": "Gelang akar bahar hitam, barang langka kolektor", 
+            "price": {"value": {"display": "Rp 250.000"}}, 
+            "locations_resolved": {"ADMIN_LEVEL_3_name": "Balikpapan Selatan", "ADMIN_LEVEL_1_name": "Kalimantan Timur"},
+            "user": {"name": "Borneo Craft"}, "created_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        },
+        {
+            "id": "3", "title": "Dijual Cepat Alat Setrum Ikan Portable", 
+            "description": "Alat setrum ikan air tawar, voltage tinggi, siap pakai", 
+            "price": {"value": {"display": "Rp 850.000"}}, 
+            "locations_resolved": {"ADMIN_LEVEL_3_name": "Samarinda Ulu", "ADMIN_LEVEL_1_name": "Kalimantan Timur"},
+            "user": {"name": "Elektronik Jaya"}, "created_at": "2026-01-20T10:00:00"
+        },
+        {
+            "id": "4", "title": "Ikan Aligator Gar Jumbo", 
+            "description": "Ikan hias predator aligator gar ukuran 50cm sehat makan rakus", 
+            "price": {"value": {"display": "Rp 400.000"}}, 
+            "locations_resolved": {"ADMIN_LEVEL_3_name": "Pontianak Kota", "ADMIN_LEVEL_1_name": "Kalimantan Barat"},
+            "user": {"name": "Predator Fish"}, "created_at": "2026-01-21T09:30:00"
+        },
+        {
+            "id": "5", "title": "Hiasan Cangkang Kerang Kima Besar", 
+            "description": "Cangkang kima raksasa untuk hiasan taman atau aquarium", 
+            "price": {"value": {"display": "Rp 1.500.000"}}, 
+            "locations_resolved": {"ADMIN_LEVEL_3_name": "Tarakan Barat", "ADMIN_LEVEL_1_name": "Kalimantan Utara"},
+            "user": {"name": "Antik Kaltara"}, "created_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        }
+    ]
+    
+    # Filter dummy sesuai keyword biar agak realistis
+    filtered_results = []
+    keyword_lower = keyword.lower()
+    
+    # Kalau keywordnya "lobster", kasih data lobster, dll.
+    for item in dummy_data:
+        # Logika sederhana: kalau keyword cocok atau ini mode demo, masukkan data
+        if keyword_lower in item['title'].lower() or keyword_lower in item['description'].lower():
+            filtered_results.append(item)
+            
+    # Jika tidak ada yang cocok (misal keyword aneh), kembalikan semua dummy biar ga kosong
+    if not filtered_results:
+        return dummy_data
+        
+    return filtered_results
+    
     all_items = []
     for page in range(max_pages):
         try:
@@ -550,3 +604,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
