@@ -52,7 +52,7 @@ Ringkasan statistik temuan harian dan sebaran platform pelanggaran.
 
 ## ☁️ Deployment
 
-Link streamlit dapat diakses pada x
+Link streamlit dapat diakses pada https://psdkp-monitoring-online.streamlit.app/
 
 **⚠️ Catatan Penting untuk Cloud:**
 Karena aplikasi ini menggunakan SQLite (`psdkp_hybrid.db`), data yang disimpan akan **ter-reset** setiap kali aplikasi di-*reboot* oleh server Streamlit Cloud (sifat *ephemeral*). Untuk penggunaan demo/presentasi, ini tidak masalah. Untuk penggunaan jangka panjang permanen, disarankan menghubungkan ke Google Sheets atau Cloud Database.
