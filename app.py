@@ -537,7 +537,7 @@ def main():
                             'pelanggaran': row['Pelanggaran']
                         })
                     new_data = save_to_db(hasil)
-                    st.success(f"✅ Selesai! {len(hasil)} iklan ditemukan ({new_data} baru).")
+                    st.success(f"✅ Selesai! {len(hasil)} iklan ditemukan ({new_data} baru). Catatan: Data Dummy")
                     st.dataframe(df[['Usia_Iklan', 'Judul', 'Harga', 'Lokasi', 'URL', 'Skor']])
                 else: st.info("Tidak ada indikasi pelanggaran ditemukan.")
 
@@ -604,4 +604,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
