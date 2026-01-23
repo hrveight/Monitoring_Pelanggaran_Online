@@ -509,7 +509,7 @@ def main():
                     olx_keywords = [k.strip() for k in olx_keywords_input.split("\n") if k.strip()]
                 with col2:
                     olx_location = st.selectbox("Pilih Provinsi:", list(LOCATION_DICT_OLX.keys()))
-                    olx_max_pages = st.slider("Halaman per Keyword:", 1, 5, 2)
+                    olx_max_pages = st.slider("Halaman per Keyword:", 1, 20, 2)
                     olx_min_score = st.slider("Sensitivitas Skor:", 0, 100, 50)
                 start_olx = st.form_submit_button("🛒 SCAN OLX")
             
@@ -604,5 +604,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
